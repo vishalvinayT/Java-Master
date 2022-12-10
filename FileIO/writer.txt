@@ -1,0 +1,6 @@
+0, End
+1, Room
+2, Hill
+3, Building
+4, Valley
+5, Forest
