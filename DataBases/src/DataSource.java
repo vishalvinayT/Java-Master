@@ -6,6 +6,9 @@ public class DataSource {
     private static final String CONNECTION="jdbc:sqlite:";
     private static final String  PATH="D:\\SQL\\music\\";
 
+    public static final int ORDER_BY_ASC=0;
+    public  static  final int ORDER_BY_DESC=1;
+
     private static String ARTISTS="artists";
     private static String ALBUMS="albums";
     private static String SONGS="songs";
@@ -38,6 +41,62 @@ public class DataSource {
         }
         return artists;
 
+    }
+
+    public List<SongArtist> searchBySong(String name, int orderBy){
+        String Query="Select ar.name as artist_name, al.name as album_name, s.track  from songs s join albums al on s.album=al._id join artists ar on al.artist=ar._id where s.title= \""+name+"\"";
+        List<SongArtist> artists=new ArrayList<>();
+        if(orderBy==ORDER_BY_DESC){
+            Query+=" order by s.title Desc";
+        }
+        else{
+            Query+=" order by s.title Asc";
+        }
+        if(connection!=null){
+            Statement statement=null;
+            ResultSet resultSet=null;
+
+            try {
+                statement=connection.createStatement();
+                resultSet=statement.executeQuery(Query);
+                while(resultSet.next()){
+                    SongArtist artist=new SongArtist();
+                    artist.setArtistName(resultSet.getString(1));
+                    artist.setAlbumName(resultSet.getString(2));
+                    artist.setTrack(resultSet.getInt(3));
+                    artists.add(artist);
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return artists;
+    }
+
+    public List<String> searchByArtists(String name, int OrderBy){
+        String Query="Select s.title from songs s join albums al on s.album=al._id join artists ar on al.artist=ar._id where ar.name= \""+name+"\"";
+        List<String> songs=new ArrayList<>();
+        if(OrderBy==ORDER_BY_DESC){
+            Query+=" order by s.title Desc";
+        }
+        else{
+            Query+=" order by s.title Asc";
+        }
+        if(connection!=null){
+            Statement statement=null;
+            ResultSet resultSet=null;
+
+            try {
+                statement=connection.createStatement();
+                resultSet=statement.executeQuery(Query);
+                while(resultSet.next()){
+                    songs.add(resultSet.getString(1));
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return songs;
     }
 
 
