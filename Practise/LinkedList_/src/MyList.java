@@ -66,9 +66,65 @@ public class MyList<T> {
         }
 
     }
+    public void deleteBegining(){
+        ListNode<T> ptr=head.next;
+        head.next=ptr.next;
+        ptr.previous=head;
+    }
 
-    public void traverseList(MyList list){
-        ListNode copy=list.head.next;
+    public void deleteBetween(int index){
+        ListNode<T> p=head;
+        ListNode<T> q=head.next;
+        int i=0;
+        while(i<index && q.next!=null){
+            p=p.next;
+            q=q.next;
+            i++;
+        }
+        if(q.next==null && i==index){
+            p.next=null;
+        }
+        else if(i==index){
+            p.next=q.next;
+            q.next.previous=p;
+        }
+        else{
+            System.out.println("Item not found");
+        }
+    }
+
+    public void deleteEnd(){
+        ListNode<T> p=head;
+        ListNode<T> q=head.next;
+        int i=0;
+        while(q.next!=null){
+            p=p.next;
+            q=q.next;
+        }
+        p.next=null;
+    }
+
+    public void deleteAtValue(T val){
+        ListNode<T> p=head;
+        ListNode<T> q=head.next;
+        while(!q.value.equals(val) && q.next!=null){
+            p=p.next;
+            q=q.next;
+
+        }
+        if(q.value.equals(val) && q.next==null){
+            p.next=null;
+        }
+        else if(q.value.equals(val)){
+            p.next=q.next;
+            q.next.next.previous=p;
+        }
+    }
+
+
+
+    public void traverseList(){
+        ListNode copy=head.next;
         int index=0;
         while(copy!=null){
             System.out.println("index: "+ index +" value: "+ copy.value);

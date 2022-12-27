@@ -10,7 +10,7 @@ public class Main {
         list.add(34);
         list.add(55);
 
-        list.traverseList(list);
+        list.traverseList();
 
         //list.insertBegining(1000);
         //list.insertBetween(2,2000);
@@ -18,6 +18,26 @@ public class Main {
         ListNode<Integer> sample=list.head.next.next.next;
         list.insertAfterNode(sample,3000);
 
-        list.traverseList(list);
+        list.deleteBegining();
+        list.traverseList();
+
+
+        System.out.println();
+
+        list.deleteBetween(7);
+        list.deleteBetween(5);
+        list.traverseList();
+
+        System.out.println();
+
+        list.deleteEnd();
+
+        list.traverseList();
+
+        System.out.println();
+        list.deleteAtValue(3000);
+        list.deleteAtValue(90);
+        list.deleteAtValue(20000);
+        list.traverseList();
     }
 }
