@@ -15,7 +15,6 @@ public class Main {
 
     }
 }
-
 class Solution {
     public List<String> letterCombinations(String digits) {
         List<String> combinedList=new ArrayList<>();
@@ -41,7 +40,6 @@ class Solution {
             return combinedList;
         }
     }
-
     public String filterString(String str) {
         String sample="";
         String reg = "([2-9]+)";
@@ -52,10 +50,6 @@ class Solution {
         }
         return sample;
     }
-
-
-
-
     public List<String> addVals(String stackVal, String[] arr, List<String> finalList, int length){
         String val;
         List<String> temp=new ArrayList<>();
