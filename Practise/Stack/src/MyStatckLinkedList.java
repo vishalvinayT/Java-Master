@@ -65,6 +65,26 @@ public class MyStatckLinkedList<T> implements StackADT {
         }
     }
 
+    public Object stackTop(){
+        if(!isEmpty()){
+            return top.value;
+        }else {
+            throw new NullPointerException();
+        }
+    }
+
+    public Object stackBottom(){
+        ListNode<T> copy= this.top;
+        if(!isEmpty()){
+            if(copy.next!=null){
+                copy=copy.next;
+            }
+            return copy.value;
+        }else{
+            throw new NullPointerException();
+        }
+    }
+
 
     public void traverse(){
         ListNode<T> copy=this.top;
