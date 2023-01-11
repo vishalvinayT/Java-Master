@@ -1,11 +1,11 @@
-
+package stack;
 
 public class Main {
     public static void main(String[] args) {
         try{
 //            int size=10;
 //            Integer[] arr=new Integer[10];
-//            MyStack<Integer> myStack=new MyStack<>(arr,size);
+//            stack.MyStack<Integer> myStack=new stack.MyStack<>(arr,size);
 //            System.out.println(myStack.isEmpty());
 //            myStack.push(20);
 //            myStack.push(400);

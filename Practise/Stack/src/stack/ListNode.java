@@ -1,3 +1,5 @@
+package stack;
+
 public class ListNode<T> {
     public T value;
     public ListNode next;

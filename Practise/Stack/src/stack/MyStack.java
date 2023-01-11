@@ -1,3 +1,5 @@
+package stack;
+
 public class MyStack<T> implements StackADT{
     private T[] dataSource;
     private int top;

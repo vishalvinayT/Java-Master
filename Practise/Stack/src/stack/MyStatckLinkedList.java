@@ -1,5 +1,4 @@
-import java.util.Collection;
-import java.util.ListIterator;
+package stack;
 
 
 public class MyStatckLinkedList<T> implements StackADT {
