@@ -2,7 +2,6 @@ package stack;
 
 public interface StackADT {
 
-
     public  boolean isEmpty();
 
     public  boolean isFull();
