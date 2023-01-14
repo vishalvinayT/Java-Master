@@ -3,17 +3,22 @@ package match;
 import stack.ListNode;
 import stack.MyStatckLinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 public class Main {
     public static void main(String[] args) {
         //String expression="(3x(4+8)-9";
         //String matching=parenthesisEvaluate(expression)? "parenthesis are matching": "parenthesis are not matching";
-        String expression="[3x23+(23+2)-{5+(90/3)-0}]-99)";
-        String matching=multipleParenthesisMatching(expression)? "parenthesis are matching": "parenthesis are not matching";
-        System.out.println(matching);
+        String expression="[3*23+(23+2)-{5+(90/3)-0}]-99)";
+//        String matching=multipleParenthesisMatching(expression)? "parenthesis are matching": "parenthesis are not matching";
+//        System.out.println(matching);
+        String infixExpression="x-y/z-k*d";
+        String postfixExpression=GeneratePostfixExpression.convertInfixPostfix(infixExpression);
+        System.out.println(postfixExpression);
+
     }
-
-
-
     public static boolean parenthesisEvaluate(String expression){
         if(expression!=null){ // Guard Closing
             char[] expressionArray= expression.toCharArray();
