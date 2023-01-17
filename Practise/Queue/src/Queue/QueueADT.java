@@ -11,4 +11,6 @@ public abstract class QueueADT<T> {
     public abstract void enQueue(T value);
     public abstract T deQueue();
 
+    public abstract void traverse();
+
 }

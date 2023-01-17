@@ -9,9 +9,12 @@ public class Main {
         int ele=queueArr.deQueue();
         queueArr.enQueue(13);
         queueArr.enQueue(45);
-        queueArr.deQueue();
+        ele=queueArr.deQueue();
         queueArr.enQueue(123);
-        queueArr.enQueue(125);
+        queueArr.deQueue();
+
+
+        queueArr.traverse();
 
         System.out.println("Size of array: "+ queueArr.queueSize);
 

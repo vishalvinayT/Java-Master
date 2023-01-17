@@ -9,13 +9,15 @@ public class QueueArr<T> extends QueueADT<T>{
     private int size;
     public int queueSize=0;
     public QueueArr(int size){
+        super.frontIndex=0;
+        super.backIndex=0;
         this.size=size;
         this.queuearr= new Object[this.size];
     }
 
     @Override
     public boolean isEmpty() {
-        if(frontIndex<=0){
+        if(backIndex==frontIndex){
             return true;
         }
         return false;
@@ -25,7 +27,7 @@ public class QueueArr<T> extends QueueADT<T>{
 
     @Override
     public boolean isFull() {
-        if(frontIndex>=this.size-1){
+        if((backIndex+1)%size==frontIndex){
             return true;
         }
         return false;
@@ -33,30 +35,29 @@ public class QueueArr<T> extends QueueADT<T>{
 
     @Override
     public T queueBottom() {
-        try{
-            return (T) queuearr[frontIndex];
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Queue is Empty");
-            throw new ArrayIndexOutOfBoundsException();
+        if(!isEmpty()){
+            return (T) queuearr[backIndex];
+        }
+        else{
+            return null;
         }
     }
 
     @Override
     public T queueTop() {
-        try {
-            return (T)queuearr[0];
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Queue is Empty");
-            throw new ArrayIndexOutOfBoundsException();
+        if(!isEmpty()){
+            return (T) queuearr[(frontIndex+1)%size];
+        }else {
+            return null;
         }
-
     }
 
     @Override
     public void enQueue(T value) {
+        // converted code from Old commit queue code to new circular queue code
         if(!isFull()){
-            frontIndex++;
-            queuearr[frontIndex]=value;
+            backIndex= (backIndex+1) % size;
+            queuearr[backIndex]=value;
             queueSize++;
         }else{
             System.out.println("Queue is Full");
@@ -68,17 +69,29 @@ public class QueueArr<T> extends QueueADT<T>{
 
     @Override
     public T deQueue() {
+        // converted code from Old commit queue code to new circular queue code
         if(!isEmpty()){
-            T result=(T)queuearr[0];
-            copyArr= new Object[this.size];
-            System.arraycopy(queuearr,1,copyArr,0,queuearr.length-1);
-            frontIndex--;
+            frontIndex=(frontIndex+1)%size;
             queueSize--;
-            queuearr=copyArr;
-            return result;
+            return (T) queuearr[frontIndex];
         }
 
         System.out.println("Queue is Empty");
         throw new EmptyStackException();
+    }
+
+
+    @Override
+    public void traverse(){
+        if(!isEmpty()){
+            int startIndex=frontIndex;
+            for(int i=0 ; i<queueSize ;i++){
+                startIndex=(startIndex+1)%size;
+                System.out.println(queuearr[startIndex]);
+            }
+            return;
+        }
+        System.out.println("Queue is Empty");
+
     }
 }
