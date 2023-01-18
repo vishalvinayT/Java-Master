@@ -1,4 +1,4 @@
-import java.util.Objects;
+package ListPackage;
 
 public class ListNode<T> {
     public ListNode<T> previous;

@@ -1,3 +1,7 @@
+package ListPackage;
+
+import ListPackage.ListNode;
+
 public class Main {
     public static void main(String[] args) {
         MyList<Integer> list=new MyList<Integer>();

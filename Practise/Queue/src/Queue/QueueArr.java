@@ -23,8 +23,6 @@ public class QueueArr<T> extends QueueADT<T>{
         return false;
     }
 
-
-
     @Override
     public boolean isFull() {
         if((backIndex+1)%size==frontIndex){
@@ -42,7 +40,6 @@ public class QueueArr<T> extends QueueADT<T>{
             return null;
         }
     }
-
     @Override
     public T queueTop() {
         if(!isEmpty()){
