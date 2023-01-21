@@ -79,7 +79,7 @@ public class DEQueueArr<T> extends DEQueueADT<T>{
 
     @Override
     protected T rearDequeue() {
-        // Hey for restricted out DEQueue the rearEnque will be out.
+        // Hey for restricted out DEQueue the rearDequeue will be out.
         if(!isEmpty()){
             T removedValue= (T) DEQueueArr[rear];
             int rearDecrement=rear-1;
