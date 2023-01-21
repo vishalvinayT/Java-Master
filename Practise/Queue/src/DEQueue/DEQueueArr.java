@@ -107,7 +107,6 @@ public class DEQueueArr<T> extends DEQueueADT<T>{
             }
             return;
         }
-
         System.out.println("DEQueue is Empty");
     }
 }
