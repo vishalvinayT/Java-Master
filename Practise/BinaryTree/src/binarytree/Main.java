@@ -1,10 +1,24 @@
 package binarytree;
 
 
+import javax.print.attribute.standard.SheetCollate;
+
 public class Main {
     public static void main(String[] args) {
-        ListNode head= new ListNode(2);
-        head.left=new ListNode(new ListNode(1),11, new ListNode(12));
-        head.right= new ListNode(4, new ListNode(3));
+        ListNode head=new ListNode(6);
+        BinaryTree tree= new BinaryTree();
+        tree.addLeft(head,4 );
+        tree.addRight(head,7);
+        tree.addLeft(head.left,3);
+        tree.addRight(head.left,5);
+
+//        tree.preTraversal(head);
+//        System.out.println();
+//        tree.postTraversal(head);
+//        System.out.println();
+        tree.inorderTraversal(head);
+        System.out.println();
+        System.out.println(tree.isBST(head));
+
     }
 }
