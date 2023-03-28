@@ -47,4 +47,58 @@ public class BinaryTree {
         }
         return true;
     }
+    public boolean binarySearch(ListNode head,Object value){
+        ListNode copy=head;
+        if(copy!=null){
+            if((int)value<(int)copy.value){
+                copy=copy.left;
+                binarySearch(copy,value);
+            }
+            if((int) value > (int) copy.value ){
+                copy=copy.right;
+                binarySearch(copy,value);
+            }
+            if((int) value == (int)copy.value){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean binarySearchIterative(ListNode head, Object value){
+        ListNode copy= head;
+        while(copy!=null){
+            if((int) copy.value==(int) value){
+                return true;
+            }
+            else if((int)copy.value>(int)value){
+                copy=copy.left;
+            }
+            else copy=copy.right;
+        }
+        return false;
+    }
+    public void binarySearchInsert(ListNode head, Object value){
+        ListNode copy= head;
+        ListNode prev=null;
+        while(copy!=null){
+            prev=copy;
+            if((int) copy.value==(int)value){
+                return;
+            }
+            else if((int) value<(int) copy.value){
+                copy=copy.left;
+            }
+            else{
+                copy=copy.right;
+            }
+        }
+        if((int) value<(int) prev.value){
+            prev.left=new ListNode(value);
+
+        }else{
+            prev.right=new ListNode(value);
+        }
+
+    }
 }

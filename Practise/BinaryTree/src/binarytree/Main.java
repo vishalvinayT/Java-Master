@@ -16,9 +16,11 @@ public class Main {
 //        System.out.println();
 //        tree.postTraversal(head);
 //        System.out.println();
-        tree.inorderTraversal(head);
-        System.out.println();
-        System.out.println(tree.isBST(head));
-
+//        tree.inorderTraversal(head);
+//        System.out.println();
+//        System.out.println(tree.isBST(head));
+        //System.out.println(tree.binarySearch(head,5));
+        //System.out.println(tree.binarySearchIterative(head,7));
+        tree.binarySearchInsert(head,1);
     }
 }
