@@ -1,7 +1,6 @@
 package binarytree;
 
 public class BinaryTree {
-    private ListNode head=null;
     private static ListNode previous=null;
 
     public void addLeft(ListNode head,Object value){
@@ -29,7 +28,7 @@ public class BinaryTree {
     public void inorderTraversal(ListNode head){
         if(head!=null){
             inorderTraversal(head.left);
-            System.out.print(""+head.value);
+            System.out.printf("%4d",head.value);
             inorderTraversal(head.right);
         }
     }
@@ -99,6 +98,40 @@ public class BinaryTree {
         }else{
             prev.right=new ListNode(value);
         }
+    }
 
+
+    public ListNode deleteNode(ListNode head, Object value){
+        ListNode copy=head;
+        if(copy==null){
+            return null;
+        }
+        if(copy.left==null && copy.right==null){
+            return null;
+
+        }
+        if((int) value<(int) copy.value){
+            copy.left=deleteNode(copy.left,value);
+        }
+        else if((int) value>(int) copy.value){
+            copy.right=deleteNode(copy.right,value);
+        }
+        else{
+            ListNode predecessor=predecessor(head);
+            copy.value=predecessor.value;
+            copy.left=deleteNode(copy.left,predecessor.value);
+        }
+        return copy;
+    }
+
+    private ListNode predecessor(ListNode root){
+        if(root!=null){
+            ListNode copy=root.left;
+            while(copy.right!=null){
+                copy=copy.right;
+            }
+            return copy;
+        }
+        return null;
     }
 }
