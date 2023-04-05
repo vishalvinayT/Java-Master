@@ -88,18 +88,19 @@ public class AVLTree {
         // if bf is < -1 then left is grater
         // if bf is > 1 then right is grater
         if(bf<-1  && value<(int) copy.left.value){
-            rightRotate(copy);
+            return rightRotate(copy);
+
         }
         if(bf>1 && value>(int) copy.right.value){
-            head=leftRotate(copy);
+            return leftRotate(copy);
         }
         if(bf<-1 && value>(int) copy.left.value){
-            leftRotate(copy.left);
-            head=rightRotate(copy);
+            copy.left=leftRotate(copy.left);
+            return rightRotate(copy);
         }
         if(bf>1 && value<(int) copy.right.value){
-            rightRotate(copy.right);
-            head=leftRotate(copy);
+            copy.right=rightRotate(copy.right);
+            return leftRotate(copy);
         }
         return head;
 

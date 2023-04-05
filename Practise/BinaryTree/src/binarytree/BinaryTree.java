@@ -28,7 +28,7 @@ public class BinaryTree {
     public void inorderTraversal(ListNode head){
         if(head!=null){
             inorderTraversal(head.left);
-            System.out.printf("%4d",head.value);
+            System.out.printf("%8d",head.value);
             inorderTraversal(head.right);
         }
     }
