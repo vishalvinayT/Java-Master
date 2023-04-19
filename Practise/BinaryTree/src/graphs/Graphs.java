@@ -6,8 +6,10 @@ import Queue.QueueArr;
 public class Graphs {
     public static void main(String[] args){
         int[][] adjacentMatrix= new int[][]{{0,1,1,1,0,0,0},{1,0,1,0,0,0,0},{1,1,0,1,1,0,0},{1,0,1,0,1,0,0},{0,0,1,1,0,1,1},{0,0,0,0,1,0,0},{0,0,0,0,1,0,0}};
-        bfs(adjacentMatrix);
-        dfs(adjacentMatrix,0);
+//        bfs(adjacentMatrix);
+//        dfs(adjacentMatrix,0);
+        GraphAlgorithms algorithms=new GraphAlgorithms();
+        algorithms.khanAlgo(adjacentMatrix);
     }
     private static void bfs(int[][] adjacentMatrix){
         if(adjacentMatrix!=null){
