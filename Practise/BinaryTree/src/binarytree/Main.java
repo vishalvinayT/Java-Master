@@ -23,5 +23,6 @@ public class Main {
         //System.out.println(tree.binarySearchIterative(head,7));
         //tree.binarySearchInsert(head,1);
         tree.inorderTraversal(tree.deleteNode(head,6));
+
     }
 }

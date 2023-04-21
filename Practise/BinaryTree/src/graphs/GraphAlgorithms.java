@@ -53,7 +53,6 @@ public class GraphAlgorithms {
             }
         }
     }
-
     private int[] calculateIndegree(int[][] inputGraph) {
         int[] explored = new int[inputGraph.length];
         boolean[] visited = new boolean[inputGraph.length];
@@ -67,7 +66,7 @@ public class GraphAlgorithms {
         }
         return explored;
     }
-    public Map<Integer,Integer> dijkstrasAlgo(int[][] inputCostGraph){
+    public Map<Integer,Integer> dijkstrasAlgo(int[][] inputCostGraph,int startNode){
         // used to the minimum cost spanning tree
         // todo: start with a node and explore the its neighbours and add the costs in the cost array
         //  compare the cost already exists in the array is grater than the new cost
@@ -78,6 +77,14 @@ public class GraphAlgorithms {
             QueueArr<Integer> explored=new QueueArr<>(100);
             boolean[] removed=new boolean[inputCostGraph.length];
             int[] costArray=new int[inputCostGraph.length];
+            for(int m=0;m<costArray.length;m++){
+                costArray[m]=Integer.MAX_VALUE;
+            }
+            // entry node
+            distanceMap.put(startNode,0);
+            removed[startNode]=true;
+            costArray[startNode]=0;
+            explored.enQueue(startNode);
             while(!explored.isEmpty()){
                 int minIndex=-1;
                 int minValue=Integer.MAX_VALUE;
@@ -85,7 +92,11 @@ public class GraphAlgorithms {
                 // putting the costs of every node in the costArray
                 for(int i =0; i<inputCostGraph[0].length;i++){
                     if(inputCostGraph[value][i]>0 && inputCostGraph[value][i]<costArray[i]){
-                        costArray[i]=distanceMap.get(value)+inputCostGraph[value][i];
+                        int compareValue=distanceMap.get(value)+inputCostGraph[value][i];
+                        if(compareValue<costArray[i] && !removed[i]){
+                            costArray[i]= compareValue;
+                        }
+
                     }
                 }
                 // finding the minimum value in the costarray
@@ -98,6 +109,7 @@ public class GraphAlgorithms {
                 // putting the minimum cost value into the map
                 if(minIndex!=-1){
                     distanceMap.put(minIndex,minValue);
+                    removed[minIndex]=true;
                     explored.enQueue(minIndex);
                 }
             }
@@ -111,4 +123,65 @@ public class GraphAlgorithms {
         }
         return null;
     }
+
+
+
+    // implementation of dijkstras alogorithm from online
+    public int[] dijkrtrasOnline(int[][] inputGraph, int src){
+        // not working needs fixing
+        if(inputGraph!=null){
+            int[] distances=new int[inputGraph.length];
+            boolean[] settled = new boolean[inputGraph.length];
+            QueueArr<Integer> prorityQueue= new QueueArr<>(100);
+            settled[src]=true;
+            for(int i=0;i< inputGraph.length;i++){
+                if(i!=src){
+                    distances[i]=Integer.MAX_VALUE;
+                }
+                prorityQueue.enQueue(i);
+            }
+            while(!prorityQueue.isEmpty()){
+                int value= prorityQueue.deQueue();
+                for(int e=0; e< inputGraph[0].length;e++){
+                    int total=distances[value]+inputGraph[value][e];
+                    if(total<distances[e] && total>0){
+                        distances[e]=total;
+                    }
+                }
+
+            }
+            return distances;
+        }
+        return null;
+    }
+
+    public int primsAlgo(int[][] costMatrix, int src){
+        if(costMatrix!=null){
+            boolean[] explored= new boolean[costMatrix.length];
+            Integer totalCost=0;
+            explored[src]=true;
+            return evaluate(costMatrix,src,explored,totalCost);
+
+        }
+        return -1;
+    }
+
+    private int evaluate(int[][] costMatrix, int index, boolean[] explored,Integer totalCost){
+        int minIndex=-1;
+        int minValue=Integer.MAX_VALUE;
+        for(int i=0; i<costMatrix[0].length;i++){
+            if(costMatrix[index][i]<minValue && costMatrix[index][i]>0&& !explored[i]){
+                minValue=costMatrix[index][i];
+                minIndex=i;
+            }
+        }
+        if(minIndex!=-1){
+            totalCost+=minValue;
+            explored[index]=true;
+            return evaluate(costMatrix,minIndex,explored,totalCost);
+        }
+        return totalCost;
+    }
+
+
 }

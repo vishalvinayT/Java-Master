@@ -3,13 +3,22 @@ package graphs;
 
 import Queue.QueueArr;
 
+import java.util.Arrays;
+import java.util.Map;
+
 public class Graphs {
     public static void main(String[] args){
         int[][] adjacentMatrix= new int[][]{{0,1,1,1,0,0,0},{1,0,1,0,0,0,0},{1,1,0,1,1,0,0},{1,0,1,0,1,0,0},{0,0,1,1,0,1,1},{0,0,0,0,1,0,0},{0,0,0,0,1,0,0}};
-//        bfs(adjacentMatrix);
+        int[][] costMatrix= new int[][]{{0,0,4,2,0,0},{0,0,9,0,1,0},{4,9,0,3,0,1},{2,0,3,0,0,1},{0,1,0,0,0,2},{0,0,1,1,2,0}};
+        //        bfs(adjacentMatrix);
 //        dfs(adjacentMatrix,0);
         GraphAlgorithms algorithms=new GraphAlgorithms();
-        algorithms.khanAlgo(adjacentMatrix);
+//        algorithms.khanAlgo(adjacentMatrix);
+//        Map<Integer,Integer> costMap=algorithms.dijkstrasAlgo(costMatrix,0);
+//        for(Map.Entry<Integer,Integer> a:costMap.entrySet() ){
+//            System.out.println("node: "+a.getKey()+" value: "+a.getValue());
+//        }
+        System.out.println(algorithms.primsAlgo(costMatrix,0));
     }
     private static void bfs(int[][] adjacentMatrix){
         if(adjacentMatrix!=null){
